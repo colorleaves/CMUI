@@ -1,0 +1,56 @@
+
+////////////////////  btn  ////////////////////
+-cm-core-btn()
+	/* --------------------------------------------- */
+	/** basic **/
+	.cm-btn
+	.cm-btn-wrapper
+		display block
+		-webkit-tap-highlight-color transparent
+
+	.cm-btn
+		box-sizing border-box
+		overflow ellipsis
+		text-align center
+		text-decoration none
+
+	// form btn
+	input
+	button
+		&.cm-btn
+			width 100%
+			appearance none
+			border-style none
+			cursor pointer
+			.cm-btn-line > &
+			.cm-btn-group > &
+				width auto
+
+	// disabled
+	.cm-btn.disabled
+	.cm-btn:disabled
+		cursor default
+		cursor not-allowed
+	.cm-btn.disabled
+		pointer-events none
+
+	// btn wrapper
+	html.cmui
+		.cm-btn-wrapper
+			// to make non-action elements response `click` event on ios
+			cursor pointer
+		// `.disabled` classes on btn-wrappers only disable functionality of btn-wrapper's,
+		// no effect to functionality of btn's
+		.disabled .cm-btn-wrapper
+		.cm-btn-wrapper.disabled
+			cursor default
+
+	/* --------------------------------------------- */
+	/** multiple btn **/
+	.cm-btn-line
+	.cm-btn-group
+		display flex
+		>
+			.cm-btn
+			.cm-btn-wrapper
+				flex-grow 1

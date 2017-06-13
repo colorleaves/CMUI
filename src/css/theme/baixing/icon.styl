@@ -1,0 +1,41 @@
+
+////////////////////  bx - icon  ////////////////////
+-cm-core-icon()
+
+-icon-msg-sprite()
+	$-url-icon-msg = url(//file.baixing.net/icon-msg-20161103.png)
+	size 20px
+	background $-url-icon-msg no-repeat
+	background-size 20px auto
+
+-icon-msg-sprite-bg-pos($iconName)
+	$-icon-msg-sprite-bg-pos = {
+		'msg-info':			0 0,
+		'msg-success':		0 -20px,
+		'msg-warning':		0 -40px,
+		'msg-error':		0 -60px,
+		'z': 0 0
+	}
+	$pos = $-icon-msg-sprite-bg-pos[$iconName] || (99px 99px)
+	background-position $pos
+
+.cm-icon
+	&.cm-icon-x20-msg-info
+	&.cm-icon-x20-msg-success
+	&.cm-icon-x20-msg-error
+	&.cm-icon-x20-msg-warning
+		-icon-msg-sprite()
+	&.cm-icon-x20-msg-info
+		-icon-msg-sprite-bg-pos('msg-info')
+	&.cm-icon-x20-msg-success
+		-icon-msg-sprite-bg-pos('msg-success')
+	&.cm-icon-x20-msg-error
+		-icon-msg-sprite-bg-pos('msg-error')
+	&.cm-icon-x20-msg-warning
+		-icon-msg-sprite-bg-pos('msg-warning')
+
+	$-url-icon-loading = url(//file.baixing.net/201405/ui-loading-48x48-white-black.gif)
+	&.cm-icon-x50-loading-black-bg
+		size 50px
+		background $-url-icon-loading no-repeat center center
+

@@ -1,0 +1,75 @@
+
+////////////////////  overlay - mask  ////////////////////
+void function (window, CMUI) {
+	'use strict'
+
+	CMUI.mask = {
+		//class name
+		CLS: 'cm-mask',
+		CLS_HIDDEN: 'hidden',
+		CLS_FADE_IN: 'fade-in',
+		CLS_FADE_OUT: 'fade-out',
+
+		//flag
+		isReady: false,
+		isVisible: false,
+
+		//util
+		_prepare: function () {
+			var _ns = this
+			if (!this.isReady) {
+				this.$elem = $('<div class="cm-mask hidden"></div>').appendTo(gearbox.dom.$body)
+				gearbox.dom.$win.on('resize', function () {
+					if (_ns.isVisible) _ns._pos()
+				})
+				this.isReady = true
+			}
+		},
+		_pos: function () {
+			// first, shrink
+			this.$elem.css('height', '100%')
+			// then, reset its height.
+			this.$elem.css({
+				height: document.documentElement.scrollHeight + 'px'
+			})
+		},
+
+		//api
+		get$Element: function () {
+			this._prepare()
+			return this.$elem
+		},
+		adjust: function () {
+			this._pos()
+		},
+		show: function () {
+			if (this.isVisible) return false
+			this._prepare()
+			this._pos()
+			var classNames = [this.CLS]
+			this.$elem.attr('class', classNames.join(' '))
+			this.isVisible = true
+		},
+		fadeIn: function () {
+			if (this.isVisible) return false
+			this._prepare()
+			this._pos()
+			var classNames = [this.CLS, this.CLS_FADE_IN]
+			this.$elem.attr('class', classNames.join(' '))
+			this.isVisible = true
+		},
+		hide: function () {
+			if (!this.isVisible) return false
+			var classNames = [this.CLS, this.CLS_HIDDEN]
+			this.$elem.attr('class', classNames.join(' '))
+			this.isVisible = false
+		},
+		fadeOut: function () {
+			if (!this.isVisible) return false
+			var classNames = [this.CLS, this.CLS_FADE_OUT]
+			this.$elem.attr('class', classNames.join(' '))
+			this.isVisible = false
+		}
+	}
+
+}(window, CMUI)

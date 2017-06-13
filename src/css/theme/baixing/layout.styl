@@ -1,0 +1,94 @@
+
+////////////////////  bx - layout  ////////////////////
+/** var **/
+
+$cm-section-gap = 10px
+
+// nav bar
+$cm-nav-bar-height = 44px
+$cm-nav-bar-padding-h = 7px
+
+$cm-nav-bar-color-bg ?= #efeeeb
+
+$cm-nav-bar-title-fs = $cm-font-size-xl
+
+$cm-nav-bar-btn-height = 28px
+
+/* --------------------------------------------- */
+/** core **/
+-cm-core-layout($cm-color-stage)
+
+/* --------------------------------------------- */
+/** section **/
+.cm-section-title
+	$-h = 30px
+	$-fs = $cm-font-size
+	box-sizing border-box
+	padding-left $cm-content-padding
+	padding-right $cm-content-padding
+	height $-h
+	line-height $-h
+	font-size $-fs
+	font-weight normal
+	color $cm-color-fg-light
+
+.cm-section-content
+	background-color $cm-color-bg
+
+/* --------------------------------------------- */
+/** nav bar **/
+.subview > header
+	background-color $cm-nav-bar-color-bg
+
+.cm-nav-bar
+	position relative
+	height $cm-nav-bar-height
+	line-height $cm-nav-bar-height
+	> .cm-nav-bar-title
+		margin-left $cm-nav-bar-btn-wrapper-width
+		margin-right $cm-nav-bar-btn-wrapper-width
+		text-align center
+		font-size $cm-nav-bar-title-fs
+		overflow ellipsis
+	> div
+		box-sizing border-box
+		position absolute
+		top 0
+		width $cm-nav-bar-btn-wrapper-width
+	> .cm-nav-bar-left
+		left 0
+	> .cm-nav-bar-right
+		right 0
+	.cm-btn-wrapper
+		padding-top (($cm-nav-bar-height - $cm-nav-bar-btn-height)/2)
+		padding-bottom (($cm-nav-bar-height - $cm-nav-bar-btn-height)/2)
+	> .cm-nav-bar-left .cm-btn-wrapper
+	> .cm-nav-bar-left.cm-btn-wrapper
+		padding-left $cm-nav-bar-padding-h
+		.cm-btn
+			float left
+	> .cm-nav-bar-right .cm-btn-wrapper
+	> .cm-nav-bar-right.cm-btn-wrapper
+		padding-right $cm-nav-bar-padding-h
+		.cm-btn
+			float right
+
+/* --------------------------------------------- */
+/** nav bar btn **/
+$cm-nav-bar-btn-padding-h = 7px
+$cm-nav-bar-btn-fs = $cm-font-size
+$cm-nav-bar-btn-br = $cm-btn-br
+
+.cm-nav-bar .cm-btn
+	padding-left $cm-nav-bar-btn-padding-h
+	padding-right $cm-nav-bar-btn-padding-h
+	height $cm-nav-bar-btn-height
+	line-height ($cm-nav-bar-btn-height - 2)
+	font-size $cm-nav-bar-btn-fs
+	border-radius $cm-nav-bar-btn-br
+
+/* --------------------------------------------- */
+/** main content **/
+.subview > main
+	min-height 200px
+	clearfix()

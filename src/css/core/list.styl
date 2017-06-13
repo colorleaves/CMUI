@@ -1,0 +1,15 @@
+
+////////////////////  list  ////////////////////
+
+$cm-list-border-radius ?= $cm-border-radius
+$cm-list-item-min-height ?= 44px
+$cm-list-item-padding-v ?= 10px
+$cm-list-item-padding-h ?= $cm-list-item-padding-v
+
+$-sel-list-item-content = 'a, p, div, label'
+
+/* --------------------------------------------- */
+-cm-core-list()
+	.cm-list
+		li > label:first-child
+			-webkit-tap-highlight-color rgba(0, 0, 0, 0.3)

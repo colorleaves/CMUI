@@ -1,0 +1,17 @@
+
+////////////////////  icon  ////////////////////
+
+/* --------------------------------------------- */
+/** common style **/
+cm-icon()
+	hide-text()
+	display block
+
+	// usually, icons dont need to response click event
+	pointer-events none
+
+-cm-core-icon()
+	.cm-icon
+		cm-icon()
+		a&
+			pointer-events auto

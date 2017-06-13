@@ -1,0 +1,83 @@
+
+////////////////////  overlay  ////////////////////
+-cm-core-overlay()
+
+	/* --------------------------------------------- */
+	/** overlay style **/
+	.cm-tip-box
+	.cm-loading
+	.cm-mask
+		pointer-events auto
+		transform translate3d(0, 0, 0)
+
+	.cm-tip-box.hidden
+	.cm-tip-box.fade-out
+	.cm-loading.hidden
+	.cm-loading.fade-out
+	.cm-mask.hidden
+	.cm-mask.fade-out
+		opacity 0
+		pointer-events none
+
+	.cm-tip-box.fade-in
+	.cm-loading.fade-in
+	.cm-mask.fade-in
+		transition opacity 0.15s linear
+
+	.cm-tip-box.fade-out
+	.cm-loading.fade-out
+	.cm-mask.fade-out
+		transition opacity 0.20s linear
+
+
+	/* --------------------------------------------- */
+	/** mask **/
+	// Why not use `fixed` for mask?
+	// On iOS, viewport updates async while scrolling, making Mask sluggish.
+	.cm-mask
+		absolute left top
+		z-index 100
+		size 100% 100%
+		background black
+		opacity 0.6
+		-webkit-tap-highlight-color transparent
+
+
+	/* --------------------------------------------- */
+	/** loading **/
+	.cm-loading
+		&
+			fixed left -210px top
+			z-index 200
+			min-width 100px
+			max-width 200px
+			min-height 100px
+			overflow hidden
+			background black
+			border-radius 10px
+			opacity 0.75
+		// loading icon
+		.cm-icon
+			margin auto
+			margin-top 25px
+		&.cm-text .cm-icon
+			margin-top 18px
+		// loading text
+		p
+			display none
+		&.cm-text p
+			display block
+			margin 5px 20px 10px
+			color white
+			text-align center
+
+
+	/* --------------------------------------------- */
+	/** dialog **/
+	.cm-dialog
+		display none
+
+	.cm-dialog-ready
+		display block
+		absolute left -999px top -999px
+		z-index 110

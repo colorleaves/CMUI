@@ -1,0 +1,214 @@
+
+////////////////////  bx - btn  ////////////////////
+-cm-core-btn()
+
+/* --------------------------------------------- */
+/** basic **/
+
+// size
+$cm-btn-height = 44px
+$cm-btn-padding-h = 5px
+$cm-btn-fs = $cm-font-size-l
+$cm-btn-br = 4px
+
+.cm-btn
+	&
+		padding-left $cm-btn-padding-h
+		padding-right $cm-btn-padding-h
+		$-h = $cm-btn-height
+		height $-h
+		line-height ($-h - 2)
+		font-size $cm-btn-fs
+		border 1px solid
+		border-radius $cm-btn-br
+		background-color currentColor
+		-webkit-text-fill-color white
+		html.cmui a&:hover
+			text-decoration none	// to prevent default link style
+
+	input&
+	button&
+		border-style solid
+
+	&.cm-btn-xs
+		padding-left ($cm-btn-padding-h - 2)
+		padding-right ($cm-btn-padding-h - 2)
+		$-h = $cm-btn-height - 20
+		height $-h
+		line-height ($-h - 2)
+		font-size ($cm-btn-fs - 4)
+	&.cm-btn-s
+		padding-left ($cm-btn-padding-h - 1)
+		padding-right ($cm-btn-padding-h - 1)
+		$-h = $cm-btn-height - 10
+		height $-h
+		line-height ($-h - 2)
+		font-size ($cm-btn-fs - 2)
+	&.cm-btn-l
+		padding-left ($cm-btn-padding-h + 2)
+		padding-right ($cm-btn-padding-h + 2)
+		$-h = $cm-btn-height + 6
+		height $-h
+		line-height ($-h - 2)
+		font-size ($cm-btn-fs + 2)
+	&.cm-btn-xl
+		padding-left ($cm-btn-padding-h + 4)
+		padding-right ($cm-btn-padding-h + 4)
+		$-h = $cm-btn-height + 12
+		height $-h
+		line-height ($-h - 2)
+		font-size ($cm-btn-fs + 4)
+
+// style
+.cm-btn.cm-btn-bordered
+	-webkit-text-fill-color currentColor
+	background-color transparent
+
+
+/* --------------------------------------------- */
+/** contextual style (color) **/
+$cm-btn-color = #777
+$cm-btn-color-primary = $cm-color-primary
+$cm-btn-color-info = #46b8da
+$cm-btn-color-success = #4cae4c
+$cm-btn-color-danger = #cb2616
+$cm-btn-color-warning = #ff9933
+$cm-btn-color-disabled = #ccc
+
+.cm-btn
+	&
+		color $cm-btn-color
+	&.cm-btn-primary
+		color $cm-btn-color-primary
+	&.cm-btn-info
+		color $cm-btn-color-info
+	&.cm-btn-success
+		color $cm-btn-color-success
+	&.cm-btn-danger
+		color $cm-btn-color-danger
+	&.cm-btn-warning
+		color $cm-btn-color-warning
+
+/* --------------------------------------------- */
+/** status **/
+// hover
+-btn-hover-style($color)
+	$c = darken($color, 25%)
+	border-color $c
+	background-color $c
+
+html.no-touch
+	.cm-btn:not(.disabled):not(:disabled):not(.active):not(:active):hover
+		-btn-hover-style($cm-btn-color)
+	.cm-btn.cm-btn-primary:not(.disabled):not(:disabled):not(.active):not(:active):hover
+		-btn-hover-style($cm-btn-color-primary)
+	.cm-btn.cm-btn-success:not(.disabled):not(:disabled):not(.active):not(:active):hover
+		-btn-hover-style($cm-btn-color-success)
+	.cm-btn.cm-btn-info:not(.disabled):not(:disabled):not(.active):not(:active):hover
+		-btn-hover-style($cm-btn-color-info)
+	.cm-btn.cm-btn-danger:not(.disabled):not(:disabled):not(.active):not(:active):hover
+		-btn-hover-style($cm-btn-color-danger)
+	.cm-btn.cm-btn-warning:not(.disabled):not(:disabled):not(.active):not(:active):hover
+		-btn-hover-style($cm-btn-color-warning)
+
+-btn-bordered-hover-style($color)
+	border-color $color
+	background-color lighten($color, 90%)
+
+html.no-touch
+	.cm-btn.cm-btn-bordered:not(.disabled):not(:disabled):not(.active):not(:active):hover
+		-btn-bordered-hover-style($cm-btn-color)
+	.cm-btn.cm-btn-bordered.cm-btn-primary:not(.disabled):not(:disabled):not(.active):not(:active):hover
+		-btn-bordered-hover-style($cm-btn-color-primary)
+	.cm-btn.cm-btn-bordered.cm-btn-success:not(.disabled):not(:disabled):not(.active):not(:active):hover
+		-btn-bordered-hover-style($cm-btn-color-success)
+	.cm-btn.cm-btn-bordered.cm-btn-info:not(.disabled):not(:disabled):not(.active):not(:active):hover
+		-btn-bordered-hover-style($cm-btn-color-info)
+	.cm-btn.cm-btn-bordered.cm-btn-danger:not(.disabled):not(:disabled):not(.active):not(:active):hover
+		-btn-bordered-hover-style($cm-btn-color-danger)
+	.cm-btn.cm-btn-bordered.cm-btn-warning:not(.disabled):not(:disabled):not(.active):not(:active):hover
+		-btn-bordered-hover-style($cm-btn-color-warning)
+
+// active
+-btn-active-style($color)
+	border-color darken($color, 60%)
+	background-color darken($color, 50%)
+
+.cm-btn:not(.disabled):not(:disabled):active
+.cm-btn.active
+	-btn-active-style($cm-btn-color)
+.cm-btn.cm-btn-primary:not(.disabled):not(:disabled):active
+.cm-btn.cm-btn-primary.active
+	-btn-active-style($cm-btn-color-primary)
+.cm-btn.cm-btn-info:not(.disabled):not(:disabled):active
+.cm-btn.cm-btn-info.active
+	-btn-active-style($cm-btn-color-info)
+.cm-btn.cm-btn-success:not(.disabled):not(:disabled):active
+.cm-btn.cm-btn-success.active
+	-btn-active-style($cm-btn-color-success)
+.cm-btn.cm-btn-danger:not(.disabled):not(:disabled):active
+.cm-btn.cm-btn-danger.active
+	-btn-active-style($cm-btn-color-danger)
+.cm-btn.cm-btn-warning:not(.disabled):not(:disabled):active
+.cm-btn.cm-btn-warning.active
+	-btn-active-style($cm-btn-color-warning)
+
+-btn-bordered-active-style()
+	-webkit-text-fill-color white
+	border-color currentColor
+	background-color currentColor
+
+.cm-btn.cm-btn-bordered:not(.disabled):not(:disabled):active
+.cm-btn.cm-btn-bordered.active
+	-btn-bordered-active-style()
+
+// disabled
+.cm-btn
+	&.disabled
+	&:disabled
+		&
+			color $cm-btn-color-disabled !important
+			background-color currentColor !important
+			border-color currentColor !important
+		&.cm-btn-bordered
+			-webkit-text-fill-color currentColor !important
+			background-color transparent !important
+
+/* --------------------------------------------- */
+/** multiple btn **/
+
+/** btn line **/
+.cm-btn-line
+	$-gap = 10px
+	>
+		.cm-btn
+		.cm-btn-wrapper
+			margin-left ($-gap / 2)
+			margin-right ($-gap / 2)
+			&:first-child
+				margin-left 0
+			&:last-child
+				margin-right 0
+
+/** btn group **/
+.cm-btn-group
+	$-gap = 1px
+	>
+		.cm-btn:not(:first-child)
+		.cm-btn-wrapper:not(:first-child)
+			margin-left $-gap
+		.cm-btn.cm-btn-bordered:not(:first-child)
+			margin-left 0
+			border-left none
+		.cm-btn-wrapper:not(:first-child) .cm-btn.cm-btn-bordered
+			margin-left (- $-gap)
+			border-left none
+
+		.cm-btn:not(:first-child)
+		.cm-btn-wrapper:not(:first-child) .cm-btn
+			border-top-left-radius 0
+			border-bottom-left-radius 0
+		.cm-btn:not(:last-child)
+		.cm-btn-wrapper:not(:last-child) .cm-btn
+			border-top-right-radius 0
+			border-bottom-right-radius 0

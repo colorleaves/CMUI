@@ -1,0 +1,190 @@
+
+////////////////////  bx - list  ////////////////////
+-cm-core-list()
+
+/** var **/
+$cm-list-item-min-height = 50px
+$cm-list-item-padding-h = 10px
+$cm-list-item-line-height = $cm-list-item-min-height - $cm-list-item-padding-v * 2
+
+/* --------------------------------------------- */
+/** list **/
+.cm-list
+	// layout
+	> li
+		&[data-cm-badge]
+		&[data-cm-value]
+			position relative
+
+		// padding
+		>
+			{$-sel-list-item-content}
+				&:first-child
+					padding $cm-list-item-padding-v $cm-list-item-padding-h
+
+
+/* --------------------------------------------- */
+/** theme **/
+.cm-list
+	border 1px solid $cm-color-splitter
+	border-width 1px 0
+	// gap between lists
+	& + &
+		margin-top $cm-list-item-min-height * 0.5
+
+	// list item
+	> li
+		// splitter
+		+ li
+			border-top 1px solid $cm-color-splitter
+
+		>
+			{$-sel-list-item-content}
+				&:first-child
+					box-sizing border-box
+					min-height $cm-list-item-min-height
+					height 100%
+					line-height $cm-list-item-line-height
+					overflow ellipsis
+
+			a, label
+				&:first-child
+					display block
+					position relative
+					z-index 10
+					color inherit
+					text-decoration none
+					html.no-touch &:hover
+						background-color $cm-color-hover
+					html.no-touch &:active
+						background-color $cm-color-active
+
+/* --------------------------------------------- */
+/** list as section content **/
+.cm-list.cm-section-content
+	border none
+
+	& + &
+		margin-top $cm-section-gap
+
+/* --------------------------------------------- */
+/** arrow **/
+$cm-list-arrow-size = 10px
+$cm-list-arrow-color = #ccc
+$cm-list-arrow-line-width = 1px
+$cm-list-arrow-area-width = 30px
+
+.cm-list > li.cm-list-with-right-arrow
+.cm-list.cm-list-with-right-arrow > li
+	> a:first-child
+		&::after
+			content ''
+			box-sizing border-box
+			position absolute
+			right $cm-list-item-padding-h
+			top 50%
+			margin-top (- $cm-list-arrow-size / 2)
+			size $cm-list-arrow-size
+			color $cm-list-arrow-color
+			border-style solid
+			border-width $cm-list-arrow-line-width $cm-list-arrow-line-width 0 0
+			transform rotate(45deg)
+			pointer-events none
+
+/* --------------------------------------------- */
+/** badge **/
+$cm-list-badge-padding-h = 5px
+$cm-list-badge-height = 20px
+$cm-list-badge-min-width = 20px
+$cm-list-badge-max-width = 45px
+$cm-list-badge-bg-color = $cm-color-primary
+
+.cm-list > li[data-cm-badge]::after
+	content attr(data-cm-badge)
+	box-sizing border-box
+	absolute top 50% right $cm-list-item-padding-h
+	z-index 20
+	margin-top (- $cm-list-badge-height/2)
+	padding 0 $cm-list-badge-padding-h
+	min-width $cm-list-badge-min-width
+	max-width $cm-list-badge-max-width
+	line-height $cm-list-badge-height
+	overflow ellipsis
+	font-size $cm-font-size
+	text-align center
+	color white
+	background-color $cm-list-badge-bg-color
+	border-radius ($cm-list-badge-height/2)
+	pointer-events none
+
+.cm-list.cm-list-with-right-arrow > li[data-cm-badge]
+.cm-list > li[data-cm-badge].cm-list-with-right-arrow
+	&::after
+		right $cm-list-arrow-area-width
+
+
+/* --------------------------------------------- */
+/** value **/
+$cm-list-value-width = 60%
+$cm-list-value-height = 24px
+$cm-list-value-fg-color = $cm-color-fg-light
+
+.cm-list > li[data-cm-value]::after
+	content attr(data-cm-value)
+	box-sizing border-box
+	absolute top 50% right 0
+	z-index 20
+	margin-top (- $cm-list-value-height/2)
+	padding-right $cm-list-item-padding-h
+	max-width $cm-list-value-width
+	line-height $cm-list-value-height
+	overflow ellipsis
+	text-align right
+	color $cm-list-value-fg-color
+	pointer-events none
+
+.cm-list.cm-list-with-right-arrow > li[data-cm-value]
+.cm-list > li[data-cm-value].cm-list-with-right-arrow
+	&::after
+		padding-right $cm-list-arrow-area-width
+
+
+/* --------------------------------------------- */
+/** padding **/
+.cm-list > li.cm-list-with-right-arrow
+.cm-list.cm-list-with-right-arrow > li
+	> a:first-child
+		padding-right $cm-list-arrow-area-width
+
+.cm-list > li[data-cm-badge] >
+	{$-sel-list-item-content}
+		&:first-child
+			padding-right ($cm-list-item-padding-h + $cm-list-badge-max-width + 5)
+.cm-list > li[data-cm-badge].cm-list-with-right-arrow
+.cm-list.cm-list-with-right-arrow > li[data-cm-badge]
+	> a:first-child
+		padding-right ($cm-list-arrow-area-width + $cm-list-badge-max-width + 5)
+
+.cm-list > li[data-cm-value] >
+	{$-sel-list-item-content}
+		&:first-child
+			padding-right ($cm-list-value-width + 2)
+
+
+/* --------------------------------------------- */
+/** icon **/
+$cm-list-item-icon-margin-h = $cm-list-item-padding-v
+
+.cm-list > li >
+	{$-sel-list-item-content}
+		&:first-child
+			> .cm-icon
+				float left
+				margin-right $cm-list-item-icon-margin-h
+
+				for $size in 2 .. 5
+					&.cm-x{$size}0
+						$cm-list-item-icon-margin-v = (($cm-list-item-line-height - $size * 10)/2)
+						margin-top $cm-list-item-icon-margin-v
+						margin-bottom $cm-list-item-icon-margin-v
+

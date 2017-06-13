@@ -1,0 +1,78 @@
+
+////////////////////  bx - msg box  ////////////////////
+
+$cm-msg-box-color-fg = $cm-color-fg-dark
+$cm-msg-box-color-fg-info = #00AAF1
+$cm-msg-box-color-fg-warning = $cm-color-highlight
+$cm-msg-box-color-fg-success = #00D0C0
+$cm-msg-box-color-fg-error = #ff4466
+
+$cm-msg-box-color-bg = #f8f8f8
+$cm-msg-box-color-bg-info = #E5F6FD
+$cm-msg-box-color-bg-warning = #FFF7E9
+$cm-msg-box-color-bg-success = #E5FBF9
+$cm-msg-box-color-bg-error = #FFECEF
+
+.cm-msg-box
+	$-h = 44px
+	$-lh = 20px	// approximately 14px * 1.5
+	$-padding-v = ($-h - $-lh) / 2
+	clearfix()
+	position relative
+	display block
+	padding $-padding-v $cm-content-padding
+	font-size $cm-font-size
+	line-height $-lh
+
+	// icon
+	.cm-icon
+		$-icon-size = 20px
+		$-top = ($-lh - $-icon-size) / 2 + $-padding-v
+		position absolute
+		left 7px
+		top $-top
+
+	&.cm-msg-box-with-icon
+		padding-left 30px
+
+	// close btn
+	.cm-msg-box-close-btn
+		position absolute
+		size $-h
+		right 0
+		top 0
+		text-align center
+		text-decoration none !important
+		color inherit
+
+		&::after
+			content '×'
+			line-height $-h
+			font-size 20px
+
+		// interaction
+		no-tap-highlight()
+		html.no-touch &:hover
+			background-color rgba(0, 0, 0, 0.05)
+		html.cmui &:active
+			background-color rgba(0, 0, 0, 0.1)
+
+	&.cm-msg-box-with-close-btn
+		padding-right $-h
+
+	// contextual style
+	&
+		color $cm-msg-box-color-fg
+		background-color $cm-msg-box-color-bg
+	&.cm-msg-box-info
+		color $cm-msg-box-color-fg-info
+		background-color $cm-msg-box-color-bg-info
+	&.cm-msg-box-warning
+		color $cm-msg-box-color-fg-warning
+		background-color $cm-msg-box-color-bg-warning
+	&.cm-msg-box-success
+		color $cm-msg-box-color-fg-success
+		background-color $cm-msg-box-color-bg-success
+	&.cm-msg-box-error
+		color $cm-msg-box-color-fg-error
+		background-color $cm-msg-box-color-bg-error
